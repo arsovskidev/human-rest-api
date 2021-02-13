@@ -6,11 +6,10 @@ from human_api import views
 
 
 router = DefaultRouter()
-router.register('human-viewset', views.HumanViewSet, basename='human-viewset')
 router.register('human', views.HumanProfileViewSet)
+router.register('case', views.HumanProfileCaseViewSet)
 
 urlpatterns = [
-    path('human-view/', views.HumanApiView.as_view()),
     path('login/', views.HumanLoginApiView.as_view()),
     path('', include(router.urls)),
 ]

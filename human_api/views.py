@@ -6,52 +6,13 @@ from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from rest_framework import filters
 
 from human_api import serializers
 from human_api import models
 from human_api import permissions
-
-
-class HumanApiView(APIView):
-    """Testing API View"""
-    serializer_class = serializers.HumanSerializer
-
-    def get(self, request, format=None):
-        """Returns a list of contents"""
-        an_apiview = [
-            'ApiView',
-            'Hello World!',
-        ]
-
-        return Response({'title': 'Testing API View', 'an_apiview': an_apiview})
-
-    def post(self, request):
-        """Create hello message with our name"""
-        serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid():
-            name = serializer.validated_data.get('name')
-            message = f'Hello {name}'
-            return Response({'message': message})
-        else:
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-    def put(self, request, pk=None):
-        """Handle put method of an object"""
-        return Response({'method': 'PUT'})
-
-    def patch(self, request, pk=None):
-        """Handle patch method of an object"""
-        return Response({'method': 'PATCH'})
-
-    def delete(self, request, pk=None):
-        """Handle delete method of an object"""
-        return Response({'method': 'DELETE'})
 
 
 class HumanViewSet(viewsets.ViewSet):
@@ -118,4 +79,20 @@ class HumanProfileViewSet(viewsets.ModelViewSet):
 
 class HumanLoginApiView(ObtainAuthToken):
     """Handle creating human authentication tokens"""
+
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+
+
+class HumanProfileCaseViewSet(viewsets.ModelViewSet):
+    """Handles creating, reading and updating profile feed items"""
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.HumanCaseItemSerializer
+    queryset = models.HumanCaseItem.objects.all()
+    permission_classes = (
+        permissions.UpdateOwnCase,
+        IsAuthenticatedOrReadOnly
+    )
+
+    def perform_create(self, serializer):
+        """Sets the human profile to the logged in human"""
+        serializer.save(human_profile=self.request.user)
