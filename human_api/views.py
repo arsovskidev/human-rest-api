@@ -2,8 +2,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
 
 from human_api import serializers
+from human_api import models
+from human_api import permissions
 
 
 class HumanApiView(APIView):
@@ -95,3 +98,11 @@ class HumanViewSet(viewsets.ViewSet):
         """Handle removing an object"""
 
         return Response({'http_method': 'DELETE'})
+
+
+class HumanProfileViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating human profiles"""
+    serializer_class = serializers.HumanProfileSerializer
+    queryset = models.HumanProfile.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)

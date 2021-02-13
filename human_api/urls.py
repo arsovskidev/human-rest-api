@@ -7,6 +7,7 @@ from human_api import views
 
 router = DefaultRouter()
 router.register('human-viewset', views.HumanViewSet, basename='human-viewset')
+router.register('human', views.HumanProfileViewSet)
 
 urlpatterns = [
     path('human-view/', views.HumanApiView.as_view()),
