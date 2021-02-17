@@ -20,3 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('human_api.urls'))
 ]
+
+admin.site.site_header = "Human Admin"
+admin.site.site_title = "Human Admin Portal"
+admin.site.index_title = "Welcome to Human API"

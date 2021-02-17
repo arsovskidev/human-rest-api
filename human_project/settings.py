@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'o60d-q%$ob0!*8=!=^e+vs!^njfg&x25f!ry7y!4ez^8w*%c=4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -123,3 +123,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'human_api.HumanProfile'
+
+STATIC_ROOT = 'static/'
