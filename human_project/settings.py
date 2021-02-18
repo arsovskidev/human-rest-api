@@ -25,7 +25,7 @@ SECRET_KEY = 'o60d-q%$ob0!*8=!=^e+vs!^njfg&x25f!ry7y!4ez^8w*%c=4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['astennu.com', '127.0.0.1']
+ALLOWED_HOSTS = ['astennu.com', '127.0.0.1', 'localhost']
 
 
 # Application definition

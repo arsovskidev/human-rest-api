@@ -18,33 +18,6 @@ from human_api import permissions
 class HumanViewSet(viewsets.ViewSet):
     """Testing API ViewSet"""
 
-    serializer_class = serializers.HumanSerializer
-
-    def list(self, request):
-        """Return a test message"""
-
-        a_viewset = [
-            'ViewSet',
-            'Hello World!',
-        ]
-
-        return Response({'title': 'Testing API ViewSet', 'a_viewset': a_viewset})
-
-    def create(self, request):
-        """Create hello message with our name"""
-
-        serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid():
-            name = serializer.validated_data.get('name')
-            message = f'Hello {name}'
-            return Response({'message': message})
-        else:
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
     def retrieve(self, request, pk=None):
         """Handle getting an object by its ID"""
 
@@ -84,7 +57,7 @@ class HumanLoginApiView(ObtainAuthToken):
 
 
 class HumanProfileCaseViewSet(viewsets.ModelViewSet):
-    """Handles creating, reading and updating profile feed items"""
+    """Handles creating, reading and updating human cases"""
     authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.HumanCaseItemSerializer
     queryset = models.HumanCaseItem.objects.all()
