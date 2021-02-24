@@ -7,7 +7,11 @@ Vagrant.configure("2") do |config|
       systemctl disable apt-daily.timer
     
       sudo apt-get update
+
       sudo apt-get install -y python3-venv zip
+      sudo apt-get install nodejs
+      sudo apt-get install npm
+      
       sudo apt-get upgrade -y
     SHELL
    end
