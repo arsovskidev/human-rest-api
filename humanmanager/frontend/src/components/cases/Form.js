@@ -31,7 +31,7 @@ export class Form extends Component {
     const { name, email, message } = this.state;
     return (
       <div className="container">
-        <div className="card card-body mt-4 mb-4 mx-auto w-75">
+        <div className="card card-body card-transparent mt-4 mb-4 mx-auto w-75">
           <h2 className="text-center">Add Case</h2>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
@@ -65,7 +65,7 @@ export class Form extends Component {
               />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn background-dark-purple">
                 Submit
               </button>
             </div>

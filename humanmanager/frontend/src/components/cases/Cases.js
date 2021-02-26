@@ -39,9 +39,9 @@ export class Cases extends Component {
                   <td>
                     <button
                       onClick={this.props.deleteCase.bind(this, cases.id)}
-                      className="btn btn-danger btn-sm"
+                      className="btn btn-outline-danger btn-sm"
                     >
-                      Delete
+                      Remove
                     </button>
                   </td>
                 </tr>
