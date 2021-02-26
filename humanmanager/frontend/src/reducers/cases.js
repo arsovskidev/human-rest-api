@@ -1,4 +1,9 @@
-import { GET_CASES, DELETE_CASE, ADD_CASE } from "../actions/types.js";
+import {
+  GET_CASES,
+  DELETE_CASE,
+  ADD_CASE,
+  LOGOUT_SUCCESS,
+} from "../actions/types.js";
 
 const initialState = {
   cases: [],
@@ -20,6 +25,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         cases: [...state.cases, action.payload],
+      };
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        cases: [],
       };
     default:
       return state;

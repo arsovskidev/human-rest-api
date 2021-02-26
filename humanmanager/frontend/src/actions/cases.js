@@ -1,12 +1,13 @@
 import axios from "axios";
 import { createMessage, returnErrors } from "./messages";
+import { tokenConfiguration } from "./auth";
 
 import { GET_CASES, DELETE_CASE, ADD_CASE } from "./types";
 
 // Get Cases
-export const getCases = () => (dispatch) => {
+export const getCases = () => (dispatch, getState) => {
   axios
-    .get("/api/cases/")
+    .get("/api/cases/", tokenConfiguration(getState))
     .then((res) => {
       dispatch({
         type: GET_CASES,
@@ -19,9 +20,9 @@ export const getCases = () => (dispatch) => {
 };
 
 // Delete Case
-export const deleteCase = (id) => (dispatch) => {
+export const deleteCase = (id) => (dispatch, getState) => {
   axios
-    .delete(`/api/cases/${id}/`)
+    .delete(`/api/cases/${id}/`, tokenConfiguration(getState))
     .then((res) => {
       dispatch(createMessage({ deleteCase: "case successfully deleted." }));
       dispatch({
@@ -33,9 +34,9 @@ export const deleteCase = (id) => (dispatch) => {
 };
 
 // Add Case
-export const addCase = (cases) => (dispatch) => {
+export const addCase = (cases) => (dispatch, getState) => {
   axios
-    .post("/api/cases/", cases)
+    .post("/api/cases/", cases, tokenConfiguration(getState))
     .then((res) => {
       dispatch(createMessage({ addCase: "case successfully created." }));
       dispatch({
