@@ -10,6 +10,9 @@ body {
 .background-purple {
   background-color: #8880ee;
 }
+.text-purple {
+  color: #8880ee;
+}
 .background-dark-purple {
   background-color: #6c60e0;
   color: #ffffff;
