@@ -1,6 +1,7 @@
 import axios from "axios";
+import { createMessage } from "./messages";
 
-import { GET_CASES, DELETE_CASE, ADD_CASE } from "./types";
+import { GET_CASES, DELETE_CASE, ADD_CASE, GET_ERRORS } from "./types";
 
 // Get Cases
 export const getCases = () => (dispatch) => {
@@ -20,6 +21,7 @@ export const deleteCase = (id) => (dispatch) => {
   axios
     .delete(`/api/cases/${id}/`)
     .then((res) => {
+      dispatch(createMessage({ deleteCase: "case successfully deleted." }));
       dispatch({
         type: DELETE_CASE,
         payload: id,
@@ -28,15 +30,25 @@ export const deleteCase = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-// Add Cases
+// Add Case
 export const addCase = (cases) => (dispatch) => {
   axios
     .post("/api/cases/", cases)
     .then((res) => {
+      dispatch(createMessage({ addCase: "case successfully created." }));
       dispatch({
         type: ADD_CASE,
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const errors = {
+        msg: err.response.data,
+        status: err.response.status,
+      };
+      dispatch({
+        type: GET_ERRORS,
+        payload: errors,
+      });
+    });
 };

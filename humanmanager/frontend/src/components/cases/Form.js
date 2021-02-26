@@ -20,6 +20,11 @@ export class Form extends Component {
     const { name, email, message } = this.state;
     const cases = { name, email, message };
     this.props.addCase(cases);
+    this.setState({
+      name: "",
+      email: "",
+      message: "",
+    });
   };
 
   render() {
