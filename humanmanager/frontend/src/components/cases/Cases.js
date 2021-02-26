@@ -24,7 +24,7 @@ export class Cases extends Component {
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Email</th>
+                <th>EMBG</th>
                 <th>Message</th>
                 <th></th>
               </tr>
@@ -34,7 +34,7 @@ export class Cases extends Component {
                 <tr key={cases.id}>
                   <td>{cases.id}</td>
                   <td>{cases.name}</td>
-                  <td>{cases.email}</td>
+                  <td>{cases.embg}</td>
                   <td>{cases.message}</td>
                   <td>
                     <button

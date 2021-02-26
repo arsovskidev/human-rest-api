@@ -6,7 +6,7 @@ import { addCase } from "../../actions/cases";
 export class Form extends Component {
   state = {
     name: "",
-    email: "",
+    embg: "",
     message: "",
   };
 
@@ -17,18 +17,18 @@ export class Form extends Component {
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
   onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, message } = this.state;
-    const cases = { name, email, message };
+    const { name, embg, message } = this.state;
+    const cases = { name, embg, message };
     this.props.addCase(cases);
     this.setState({
       name: "",
-      email: "",
+      embg: "",
       message: "",
     });
   };
 
   render() {
-    const { name, email, message } = this.state;
+    const { name, embg, message } = this.state;
     return (
       <div className="container">
         <div className="card card-body card-transparent mt-4 mb-4 mx-auto w-75">
@@ -45,13 +45,13 @@ export class Form extends Component {
               />
             </div>
             <div className="form-group">
-              <label>Email</label>
+              <label>EMBG</label>
               <input
                 className="form-control"
-                type="email"
-                name="email"
+                type="text"
+                name="embg"
                 onChange={this.onChange}
-                value={email}
+                value={embg}
               />
             </div>
             <div className="form-group">
