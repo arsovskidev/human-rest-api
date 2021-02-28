@@ -7,7 +7,7 @@ export class Form extends Component {
   state = {
     name: "",
     embg: "",
-    message: "",
+    description: "",
   };
 
   static propTypes = {
@@ -17,59 +17,64 @@ export class Form extends Component {
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
   onSubmit = (e) => {
     e.preventDefault();
-    const { name, embg, message } = this.state;
-    const cases = { name, embg, message };
+    const { name, embg, description } = this.state;
+    const cases = { name, embg, description };
     this.props.addCase(cases);
     this.setState({
       name: "",
       embg: "",
-      message: "",
+      description: "",
     });
   };
 
   render() {
-    const { name, embg, message } = this.state;
+    const { name, embg, description } = this.state;
     return (
-      <div className="container">
-        <div className="card card-body card-transparent mt-4 mb-4 mx-auto w-75">
-          <h2 className="text-center">Add Case</h2>
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group">
-              <label>Name</label>
-              <input
-                className="form-control"
-                type="text"
-                name="name"
-                onChange={this.onChange}
-                value={name}
-              />
-            </div>
-            <div className="form-group">
-              <label>EMBG</label>
-              <input
-                className="form-control"
-                type="text"
-                name="embg"
-                onChange={this.onChange}
-                value={embg}
-              />
-            </div>
-            <div className="form-group">
-              <label>Message</label>
-              <input
-                className="form-control"
-                type="text"
-                name="message"
-                onChange={this.onChange}
-                value={message}
-              />
-            </div>
-            <div className="form-group">
-              <button type="submit" className="btn background-dark-purple">
-                Submit
-              </button>
-            </div>
-          </form>
+      <div className="row">
+        <div className="col-lg-7 mx-auto">
+          <div className="card card-body card-transparent mt-5 mb-5 mx-auto ">
+            <h2 className="text-center">Create Case</h2>
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <label>Name</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="name"
+                  onChange={this.onChange}
+                  value={name}
+                />
+              </div>
+              <div className="form-group">
+                <label>EMBG</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="embg"
+                  onChange={this.onChange}
+                  value={embg}
+                />
+              </div>
+              <div className="form-group">
+                <label>Description</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="description"
+                  onChange={this.onChange}
+                  value={description}
+                />
+              </div>
+              <div className="form-group text-center">
+                <button
+                  type="submit"
+                  className="btn background-dark-purple w-25"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );

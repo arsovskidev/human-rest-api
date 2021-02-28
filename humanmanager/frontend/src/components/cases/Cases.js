@@ -25,7 +25,7 @@ export class Cases extends Component {
                 <th>ID</th>
                 <th>Name</th>
                 <th>EMBG</th>
-                <th>Message</th>
+                <th>Description</th>
                 <th></th>
               </tr>
             </thead>
@@ -35,7 +35,7 @@ export class Cases extends Component {
                   <td>{cases.id}</td>
                   <td>{cases.name}</td>
                   <td>{cases.embg}</td>
-                  <td>{cases.message}</td>
+                  <td>{cases.description}</td>
                   <td>
                     <button
                       onClick={this.props.deleteCase.bind(this, cases.id)}

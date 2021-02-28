@@ -10,7 +10,7 @@ class Case(models.Model):
         validators=[RegexValidator(r'^\d{13,13}$')],
         unique=True
     )
-    message = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=256)
     owner = models.ForeignKey(
         User, related_name="cases", on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
